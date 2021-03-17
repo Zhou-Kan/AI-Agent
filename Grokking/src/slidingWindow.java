@@ -9,6 +9,7 @@ import java.util.*;
 class AverageOfSubarrays{
     public static double[] findAverage(int k, int[] arr) {
         double[] res = new double[arr.length - k + 1];
+        printha
 
 
     }
