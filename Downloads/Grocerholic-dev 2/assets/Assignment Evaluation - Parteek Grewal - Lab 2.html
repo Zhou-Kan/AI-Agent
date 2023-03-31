@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<!-- saved from url=(0190)https://learn.bcit.ca/d2l/le/activities/iterator/8492317?cft=assignment-submissions&ou=914252&currentActorActivityUsage=VG1wWmQwNVdPSGxOUkVGM1dIcFJNRTVxUlROT2R5NDVNVFF5TlRJLnVzZXJfMTc0OTQ4MA -->
+<html data-userprofile-context="{&quot;hasProfileCardAccess&quot;:true}" data-mathjax-context="{&quot;renderLatex&quot;:false,&quot;outputScale&quot;:1.3}" data-logging-endpoint="/d2l/lp/logger/provision?sessionToken=NjYwNSw5OTY2NTU" lang="en-ca" data-lang-default="en-ca" data-intl-overrides="{&quot;number&quot;:{&quot;patterns&quot;:{&quot;decimal&quot;:{&quot;negativePattern&quot;:&quot;-{number}&quot;},&quot;percent&quot;:{&quot;positivePattern&quot;:&quot;{number} %&quot;,&quot;negativePattern&quot;:&quot;-{number} %&quot;}},&quot;symbols&quot;:{&quot;decimal&quot;:&quot;.&quot;,&quot;group&quot;:&quot;,&quot;,&quot;negative&quot;:&quot;-&quot;,&quot;percent&quot;:&quot;%&quot;},&quot;groupSize&quot;:[3]},&quot;date&quot;:{&quot;hour24&quot;:false,&quot;calendar&quot;:{&quot;firstDayOfWeek&quot;:0,&quot;dayPeriods&quot;:{&quot;am&quot;:&quot;AM&quot;,&quot;pm&quot;:&quot;PM&quot;},&quot;months&quot;:{&quot;short&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;,&quot;&quot;],&quot;long&quot;:[&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;,&quot;July&quot;,&quot;August&quot;,&quot;September&quot;,&quot;October&quot;,&quot;November&quot;,&quot;December&quot;,&quot;&quot;]},&quot;days&quot;:{&quot;short&quot;:[&quot;Sun&quot;,&quot;Mon&quot;,&quot;Tue&quot;,&quot;Wed&quot;,&quot;Thu&quot;,&quot;Fri&quot;,&quot;Sat&quot;]}},&quot;formats&quot;:{&quot;dateFormats&quot;:{&quot;short&quot;:&quot;M/d/yyyy&quot;},&quot;timeFormats&quot;:{&quot;short&quot;:&quot;h:mm tt&quot;,&quot;medium&quot;:&quot;h:mm tt&quot;,&quot;full&quot;:&quot;h:mm tt ZZZ&quot;}}}}" data-oslo="{&quot;batch&quot;:&quot;/d2l/api/oslo/13/batch&quot;,&quot;collection&quot;:&quot;/d2l/api/oslo/13/collection&quot;,&quot;version&quot;:&quot;W/\&quot;20.23.1.18034.5298181020\&quot;&quot;}" data-timezone="{&quot;name&quot;:&quot;Canada - Vancouver&quot;,&quot;identifier&quot;:&quot;America/Vancouver&quot;}" data-app-version="20.23.1" dir="ltr" data-telemetry-endpoint="https://prd.ca-central-1.telemetryservice.brightspace.com/api/events/" data-cdn="https://s.brightspace.com/apps/brightspace/20.23.1.18034/" data-he-context="{&quot;activeOrgEnrollment&quot;:true,&quot;contentStyler&quot;:false,&quot;contentStylerCssOverride&quot;:&quot;&quot;,&quot;contentStylerMultipleThemes&quot;:false,&quot;insertElement&quot;:false,&quot;insertElementBypass&quot;:false,&quot;insertElementAndPracticeTelemetry&quot;:false,&quot;insertPractice&quot;:false,&quot;mathRenderScale&quot;:1.3,&quot;maxFileSize&quot;:2147483648,&quot;mentions&quot;:false,&quot;noInsertCode&quot;:false,&quot;orgUnitId&quot;:&quot;914252&quot;,&quot;orgUnitPath&quot;:&quot;/content/enforced/914252-89205.202310/&quot;,&quot;pasteFormatting&quot;:&quot;merge&quot;,&quot;sourceEditable&quot;:true,&quot;uploadFiles&quot;:true,&quot;viewFiles&quot;:true,&quot;wirisPath&quot;:&quot;/wiris/editorservice.aspx&quot;,&quot;wmodeOpaque&quot;:true}" data-css-vars="{&quot;--d2l-branding-primary-color&quot;:&quot;#00aca0&quot;}" style="overflow: auto; --d2l-vh:9.91px; --d2l-vw:21px;" class="js-focus-visible" data-js-focus-visible=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Assignment Evaluation - Parteek Grewal - Lab 2</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="preconnect" href="https://s.brightspace.com/lib/bsi/20.23.1-247/" crossorigin="">
+		<link rel="dns-prefetch" href="https://s.brightspace.com/lib/bsi/20.23.1-247/">
+		<link rel="modulepreload" href="https://s.brightspace.com/lib/bsi/20.23.1-247/unbundled/bsi-unbundled.js" as="script" crossorigin="anonymous">
+		<link rel="modulepreload" href="https://s.brightspace.com/lib/bsi/20.23.1-247/unbundled/consistent-evaluation.js" as="script" crossorigin="anonymous">
+		<script>
+		(function(){if('PerformanceLongTaskTiming' in window) {var g = window.__tti = {e:[]};g.o = new PerformanceObserver( function( l ){ g.e = g.e.concat( l.getEntries() ) });g.o.observe({ entryTypes:['longtask']})}})();
+		(function(){var client;var errors = [];window.addEventListener('d2l-logging-loaded', function(e) {client = e.detail.createClient('uncaught-errors', { shouldThrottle: true });if (errors.length > 0) {client.legacyErrorBatch(errors);}});var handleError = function(data) {if (client) {client.legacyError(data.message, data.source, data.lineno, data.colno, data.error);} else {errors.push(data);}};window.addEventListener('error', function(e) {handleError({ message: e.message, source: e.source, lineno: e.lineno, colno: e.colno, error: e.error });});window.addEventListener('unhandledrejection', function(e) {handleError({message: e.reason ? (e.reason.message ? e.reason.message : e.reason) : '',error: e.reason});});})();
+		(function(){try { localStorage.setItem('XSRF.Token','nJX4JfITKuvlS4sfxQxr7IcBm7hVnNkL');localStorage.setItem('Session.UserId','996655');} catch(e) {}})();
+		(function(){if(window['FontFace'] === undefined) { window.d2lFontsLoaded = true; return; }window.d2lFontsLoaded = false;Promise.all(['400','700'].map(function(w) {return new FontFace('Lato','url(https://s.brightspace.com/lib/fonts/0.5.0/assets/Lato-' + w + '.woff2) format("woff2")', {style:'normal',weight: w}).load();})).then(function() {window.d2lFontsLoaded = true;if(window['D2L'] && window.D2L['FontsLoaded']) { window.D2L.FontsLoaded(); }});})();
+		(function(){
+				D2L = window.D2L || {}; D2L.LP = D2L.LP || {}; D2L.LP.Web = D2L.LP.Web || {}; D2L.LP.Web.UI = D2L.LP.Web.UI || {};
+				D2L.LP.Web.UI.Flags = {
+					ListedFlags: {"us132260-lti-component-postmessage-storage-limit":true,"F19935-more-paging-options":false,"F17648-publish-lor":true,"rubrics-print-stats-btn-in-tile-F18410":true,"F18639-MV-Performance":false,"F18117-face-discussions-m2":false,"F17573-more-actions":true,"F17647-set-points":true,"F17572-move-to":true,"rubrics-archive":true,"F18126-rubric-print":false,"F18735-lti-special-access-ui-feature-flag":false,"rubrics-close-pop-out-when-changes-saved-DE50529":true,"rubrics-working-copy":true,"F17828-align-standards":true,"activity-alignments-list-clear-all-confirmation":true,"rubrics-edit-assessed":true,"us137109-remove-disable-right-click":true,"f17182-autosubmit-quiz-org-level":false,"f17596-student-controlled-clock-visibility":false,"f18367-html-block-component":true,"consistent-evaluation-working-copy":true},
+					Flag: function(feature, defaultValue) {
+						const featureValue = D2L.LP.Web.UI.Flags.ListedFlags[feature];
+						return featureValue !== undefined ? featureValue : defaultValue;
+					}
+				};
+			})();
+		</script>
+		<link rel="icon" href="https://learn.bcit.ca/d2l/lp/web/faviconView?variant=0&amp;version=1">
+		<link rel="stylesheet" type="text/css" href="./Assignment Evaluation - Parteek Grewal - Lab 2_files/bsi.css">
+		<link rel="stylesheet" type="text/css" href="./Assignment Evaluation - Parteek Grewal - Lab 2_files/reset.css">
+		<link rel="stylesheet" type="text/css" href="./Assignment Evaluation - Parteek Grewal - Lab 2_files/D2L.LP.Web.Desktop.css">
+		<style>
+			html { font-size:20px; }
+			html { --d2l-branding-primary-color: #00aca0; }
+		</style>
+		<script>(function() {})();</script><style id="d2l-colors">
+		html {
+			/* basic grays (lightest to darkest) */
+			--d2l-color-regolith: #f9fbff;
+			--d2l-color-sylvite: #f1f5fb;
+			--d2l-color-gypsum: #e3e9f1;
+			--d2l-color-mica: #cdd5dc;
+			--d2l-color-corundum: #b1b9be;
+			--d2l-color-chromite: #90989d;
+			--d2l-color-galena: #6e7477;
+			--d2l-color-tungsten: #494c4e;
+			--d2l-color-ferrite: #202122;
+
+			/* zircon */
+			--d2l-color-zircon-plus-2: #e0feff;
+			--d2l-color-zircon-plus-1: #00d2ed;
+			--d2l-color-zircon: #008eab;
+			--d2l-color-zircon-minus-1: #035670;
+
+			/* celestine */
+			--d2l-color-celestine-plus-2: #e8f8ff;
+			--d2l-color-celestine-plus-1: #29a6ff;
+			--d2l-color-celestine: #006fbf;
+			--d2l-color-celestine-minus-1: #004489;
+
+			/* amethyst */
+			--d2l-color-amethyst-plus-2: #f2f0ff;
+			--d2l-color-amethyst-plus-1: #8982ff;
+			--d2l-color-amethyst: #6038ff;
+			--d2l-color-amethyst-minus-1: #4500db;
+
+			/* fluorite */
+			--d2l-color-fluorite-plus-2: #f9ebff;
+			--d2l-color-fluorite-plus-1: #ce68fa;
+			--d2l-color-fluorite: #9d1fd4;
+			--d2l-color-fluorite-minus-1: #6900a0;
+
+			/* tourmaline */
+			--d2l-color-tourmaline-plus-2: #ffebf6;
+			--d2l-color-tourmaline-plus-1: #fd4e9d;
+			--d2l-color-tourmaline: #d40067;
+			--d2l-color-tourmaline-minus-1: #990056;
+
+			/* cinnabar */
+			--d2l-color-cinnabar-plus-2: #ffede8;
+			--d2l-color-cinnabar-plus-1: #ff575a;
+			--d2l-color-cinnabar: #cd2026;
+			--d2l-color-cinnabar-minus-1: #990006;
+
+			/* carnelian */
+			--d2l-color-carnelian-plus-1: #fff3e0;
+			--d2l-color-carnelian: #e87511;
+			--d2l-color-carnelian-minus-1: #ba4700;
+			--d2l-color-carnelian-minus-2: #7d2600;
+
+			/* citrine */
+			--d2l-color-citrine-plus-1: #fff9d6;
+			--d2l-color-citrine: #ffba59;
+			--d2l-color-citrine-minus-1: #c47400;
+			--d2l-color-citrine-minus-2: #7a4300;
+
+			/* peridot */
+			--d2l-color-peridot-plus-1: #efffd9;
+			--d2l-color-peridot: #8ad934;
+			--d2l-color-peridot-minus-1: #4a8f00;
+			--d2l-color-peridot-minus-2: #2f5e00;
+
+			/* olivine */
+			--d2l-color-olivine-plus-1: #e7ffe3;
+			--d2l-color-olivine: #46a661;
+			--d2l-color-olivine-minus-1: #027a21;
+			--d2l-color-olivine-minus-2: #005614;
+
+			/* malachite */
+			--d2l-color-malachite-plus-1: #e3fff5;
+			--d2l-color-malachite: #2de2c0;
+			--d2l-color-malachite-minus-1: #00a490;
+			--d2l-color-malachite-minus-2: #00635e;
+
+			/* primary accent */
+			--d2l-color-primary-accent-action: var(--d2l-color-celestine);
+			--d2l-color-primary-accent-indicator: var(--d2l-color-carnelian);
+
+			/* feedback */
+			--d2l-color-feedback-error: var(--d2l-color-cinnabar);
+			--d2l-color-feedback-warning: var(--d2l-color-carnelian);
+			--d2l-color-feedback-success: var(--d2l-color-olivine);
+			--d2l-color-feedback-action: var(--d2l-color-celestine);
+		}
+	</style><custom-style>
+	<style is="custom-style">html {
+  --d2l-body-standard-text_-_font-size:  0.95rem; --d2l-body-standard-text_-_font-weight:  400; --d2l-body-standard-text_-_line-height:  1.4rem;;
+
+			--d2l-body-compact-text_-_font-size:  0.8rem; --d2l-body-compact-text_-_font-weight:  400; --d2l-body-compact-text_-_line-height:  1.2rem;;
+
+			--d2l-body-small-text_-_color:  var(--d2l-color-tungsten); --d2l-body-small-text_-_font-size:  0.7rem; --d2l-body-small-text_-_font-weight:  400; --d2l-body-small-text_-_line-height:  1rem; --d2l-body-small-text_-_margin:  auto;;
+
+			--d2l-heading-1_-_font-size:  2rem; --d2l-heading-1_-_font-weight:  400; --d2l-heading-1_-_line-height:  2.4rem; --d2l-heading-1_-_margin:  1.5rem 0 1.5rem 0;;
+
+			--d2l-heading-2_-_font-size:  1.5rem; --d2l-heading-2_-_font-weight:  400; --d2l-heading-2_-_line-height:  1.8rem; --d2l-heading-2_-_margin:  1.5rem 0 1.5rem 0;;
+
+			--d2l-heading-3_-_font-size:  1rem; --d2l-heading-3_-_font-weight:  700; --d2l-heading-3_-_line-height:  1.5rem; --d2l-heading-3_-_margin:  1.5rem 0 1.5rem 0;;
+
+			--d2l-heading-4_-_font-size:  0.8rem; --d2l-heading-4_-_font-weight:  700; --d2l-heading-4_-_line-height:  1.2rem; --d2l-heading-4_-_margin:  1.5rem 0 1.5rem 0;;
+
+			--d2l-label-text_-_font-size:  0.7rem; --d2l-label-text_-_line-height:  1rem; --d2l-label-text_-_font-weight:  700; --d2l-label-text_-_letter-spacing:  0.2px;;
+}
+
+</style>
+</custom-style>
+<custom-style>
+  <style is="custom-style">[hidden] {
+  display: none !important;
+}
+
+</style>
+</custom-style>
+<custom-style>
+  <style is="custom-style">html {
+  --layout_-_display:  flex;;
+
+      --layout-inline_-_display:  inline-flex;;
+
+      --layout-horizontal_-_display:  var(--layout_-_display); --layout-horizontal_-_-ms-flex-direction:  row; --layout-horizontal_-_-webkit-flex-direction:  row; --layout-horizontal_-_flex-direction:  row;;
+
+      --layout-horizontal-reverse_-_display:  var(--layout_-_display); --layout-horizontal-reverse_-_-ms-flex-direction:  row-reverse; --layout-horizontal-reverse_-_-webkit-flex-direction:  row-reverse; --layout-horizontal-reverse_-_flex-direction:  row-reverse;;
+
+      --layout-vertical_-_display:  var(--layout_-_display); --layout-vertical_-_-ms-flex-direction:  column; --layout-vertical_-_-webkit-flex-direction:  column; --layout-vertical_-_flex-direction:  column;;
+
+      --layout-vertical-reverse_-_display:  var(--layout_-_display); --layout-vertical-reverse_-_-ms-flex-direction:  column-reverse; --layout-vertical-reverse_-_-webkit-flex-direction:  column-reverse; --layout-vertical-reverse_-_flex-direction:  column-reverse;;
+
+      --layout-wrap_-_-ms-flex-wrap:  wrap; --layout-wrap_-_-webkit-flex-wrap:  wrap; --layout-wrap_-_flex-wrap:  wrap;;
+
+      --layout-wrap-reverse_-_-ms-flex-wrap:  wrap-reverse; --layout-wrap-reverse_-_-webkit-flex-wrap:  wrap-reverse; --layout-wrap-reverse_-_flex-wrap:  wrap-reverse;;
+
+      --layout-flex-auto_-_-ms-flex:  1 1 auto; --layout-flex-auto_-_-webkit-flex:  1 1 auto; --layout-flex-auto_-_flex:  1 1 auto;;
+
+      --layout-flex-none_-_-ms-flex:  none; --layout-flex-none_-_-webkit-flex:  none; --layout-flex-none_-_flex:  none;;
+
+      --layout-flex_-_-ms-flex:  1 1 0.000000001px; --layout-flex_-_-webkit-flex:  1; --layout-flex_-_flex:  1; --layout-flex_-_-webkit-flex-basis:  0.000000001px; --layout-flex_-_flex-basis:  0.000000001px;;
+
+      --layout-flex-2_-_-ms-flex:  2; --layout-flex-2_-_-webkit-flex:  2; --layout-flex-2_-_flex:  2;;
+
+      --layout-flex-3_-_-ms-flex:  3; --layout-flex-3_-_-webkit-flex:  3; --layout-flex-3_-_flex:  3;;
+
+      --layout-flex-4_-_-ms-flex:  4; --layout-flex-4_-_-webkit-flex:  4; --layout-flex-4_-_flex:  4;;
+
+      --layout-flex-5_-_-ms-flex:  5; --layout-flex-5_-_-webkit-flex:  5; --layout-flex-5_-_flex:  5;;
+
+      --layout-flex-6_-_-ms-flex:  6; --layout-flex-6_-_-webkit-flex:  6; --layout-flex-6_-_flex:  6;;
+
+      --layout-flex-7_-_-ms-flex:  7; --layout-flex-7_-_-webkit-flex:  7; --layout-flex-7_-_flex:  7;;
+
+      --layout-flex-8_-_-ms-flex:  8; --layout-flex-8_-_-webkit-flex:  8; --layout-flex-8_-_flex:  8;;
+
+      --layout-flex-9_-_-ms-flex:  9; --layout-flex-9_-_-webkit-flex:  9; --layout-flex-9_-_flex:  9;;
+
+      --layout-flex-10_-_-ms-flex:  10; --layout-flex-10_-_-webkit-flex:  10; --layout-flex-10_-_flex:  10;;
+
+      --layout-flex-11_-_-ms-flex:  11; --layout-flex-11_-_-webkit-flex:  11; --layout-flex-11_-_flex:  11;;
+
+      --layout-flex-12_-_-ms-flex:  12; --layout-flex-12_-_-webkit-flex:  12; --layout-flex-12_-_flex:  12;;
+
+      
+
+      --layout-start_-_-ms-flex-align:  start; --layout-start_-_-webkit-align-items:  flex-start; --layout-start_-_align-items:  flex-start;;
+
+      --layout-center_-_-ms-flex-align:  center; --layout-center_-_-webkit-align-items:  center; --layout-center_-_align-items:  center;;
+
+      --layout-end_-_-ms-flex-align:  end; --layout-end_-_-webkit-align-items:  flex-end; --layout-end_-_align-items:  flex-end;;
+
+      --layout-baseline_-_-ms-flex-align:  baseline; --layout-baseline_-_-webkit-align-items:  baseline; --layout-baseline_-_align-items:  baseline;;
+
+      
+
+      --layout-start-justified_-_-ms-flex-pack:  start; --layout-start-justified_-_-webkit-justify-content:  flex-start; --layout-start-justified_-_justify-content:  flex-start;;
+
+      --layout-center-justified_-_-ms-flex-pack:  center; --layout-center-justified_-_-webkit-justify-content:  center; --layout-center-justified_-_justify-content:  center;;
+
+      --layout-end-justified_-_-ms-flex-pack:  end; --layout-end-justified_-_-webkit-justify-content:  flex-end; --layout-end-justified_-_justify-content:  flex-end;;
+
+      --layout-around-justified_-_-ms-flex-pack:  distribute; --layout-around-justified_-_-webkit-justify-content:  space-around; --layout-around-justified_-_justify-content:  space-around;;
+
+      --layout-justified_-_-ms-flex-pack:  justify; --layout-justified_-_-webkit-justify-content:  space-between; --layout-justified_-_justify-content:  space-between;;
+
+      --layout-center-center_-_-ms-flex-align:  var(--layout-center_-_-ms-flex-align); --layout-center-center_-_-webkit-align-items:  var(--layout-center_-_-webkit-align-items); --layout-center-center_-_align-items:  var(--layout-center_-_align-items); --layout-center-center_-_-ms-flex-pack:  var(--layout-center-justified_-_-ms-flex-pack); --layout-center-center_-_-webkit-justify-content:  var(--layout-center-justified_-_-webkit-justify-content); --layout-center-center_-_justify-content:  var(--layout-center-justified_-_justify-content);;
+
+      
+
+      --layout-self-start_-_-ms-align-self:  flex-start; --layout-self-start_-_-webkit-align-self:  flex-start; --layout-self-start_-_align-self:  flex-start;;
+
+      --layout-self-center_-_-ms-align-self:  center; --layout-self-center_-_-webkit-align-self:  center; --layout-self-center_-_align-self:  center;;
+
+      --layout-self-end_-_-ms-align-self:  flex-end; --layout-self-end_-_-webkit-align-self:  flex-end; --layout-self-end_-_align-self:  flex-end;;
+
+      --layout-self-stretch_-_-ms-align-self:  stretch; --layout-self-stretch_-_-webkit-align-self:  stretch; --layout-self-stretch_-_align-self:  stretch;;
+
+      --layout-self-baseline_-_-ms-align-self:  baseline; --layout-self-baseline_-_-webkit-align-self:  baseline; --layout-self-baseline_-_align-self:  baseline;;
+
+      
+
+      --layout-start-aligned_-_-ms-flex-line-pack:  start; --layout-start-aligned_-_-ms-align-content:  flex-start; --layout-start-aligned_-_-webkit-align-content:  flex-start; --layout-start-aligned_-_align-content:  flex-start;;
+
+      --layout-end-aligned_-_-ms-flex-line-pack:  end; --layout-end-aligned_-_-ms-align-content:  flex-end; --layout-end-aligned_-_-webkit-align-content:  flex-end; --layout-end-aligned_-_align-content:  flex-end;;
+
+      --layout-center-aligned_-_-ms-flex-line-pack:  center; --layout-center-aligned_-_-ms-align-content:  center; --layout-center-aligned_-_-webkit-align-content:  center; --layout-center-aligned_-_align-content:  center;;
+
+      --layout-between-aligned_-_-ms-flex-line-pack:  justify; --layout-between-aligned_-_-ms-align-content:  space-between; --layout-between-aligned_-_-webkit-align-content:  space-between; --layout-between-aligned_-_align-content:  space-between;;
+
+      --layout-around-aligned_-_-ms-flex-line-pack:  distribute; --layout-around-aligned_-_-ms-align-content:  space-around; --layout-around-aligned_-_-webkit-align-content:  space-around; --layout-around-aligned_-_align-content:  space-around;;
+
+      
+
+      --layout-block_-_display:  block;;
+
+      --layout-invisible_-_visibility:  hidden !important;;
+
+      --layout-relative_-_position:  relative;;
+
+      --layout-fit_-_position:  absolute; --layout-fit_-_top:  0; --layout-fit_-_right:  0; --layout-fit_-_bottom:  0; --layout-fit_-_left:  0;;
+
+      --layout-scroll_-_-webkit-overflow-scrolling:  touch; --layout-scroll_-_overflow:  auto;;
+
+      --layout-fullbleed_-_margin:  0; --layout-fullbleed_-_height:  100vh;;
+
+      
+
+      --layout-fixed-top_-_position:  fixed; --layout-fixed-top_-_top:  0; --layout-fixed-top_-_left:  0; --layout-fixed-top_-_right:  0;;
+
+      --layout-fixed-right_-_position:  fixed; --layout-fixed-right_-_top:  0; --layout-fixed-right_-_right:  0; --layout-fixed-right_-_bottom:  0;;
+
+      --layout-fixed-bottom_-_position:  fixed; --layout-fixed-bottom_-_right:  0; --layout-fixed-bottom_-_bottom:  0; --layout-fixed-bottom_-_left:  0;;
+
+      --layout-fixed-left_-_position:  fixed; --layout-fixed-left_-_top:  0; --layout-fixed-left_-_bottom:  0; --layout-fixed-left_-_left:  0;;
+}
+
+</style>
+</custom-style><style>[hidden] { display: none !important; }</style><iron-iconset-svg name="d2l-cs-30" size="30" rtl-mirroring="true" style="display: none;">
+  <svg>
+	<defs>
+	  <g id="content">
+		<path d="M24.8,0h-7.6C16.5,0,16,0.4,16,1v16.5c0,0.1,0,0.2,0.2,0.3c0.1,0.1,0.3,0.2,0.5,0.2c0.2,0,0.3,0,0.4-0.1l0,0
+		  l2.3-1.7L21,15l1.6,1.2l2.3,1.7c0.1,0.1,0.3,0.1,0.4,0.1c0.2,0,0.3,0,0.5-0.2c0.1-0.1,0.2-0.2,0.2-0.3V1C26,0.4,25.5,0,24.8,0z
+		  M24,14.7l-1.8-1.3C21.8,13.1,21.4,13,21,13s-0.8,0.1-1.2,0.4L18,14.7V2h6V14.7z"></path>
+		<path d="M26,21v5c0,2.2-1.8,4-4,4H8c-2.2,0-4-1.8-4-4V4c0-2.2,1.8-4,4-4h5c0.5,0,1,0.5,1,1s-0.5,1-1,1H8
+		  C6.9,2,6,2.9,6,4v22c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2v-5c0-0.5,0.5-1,1-1S26,20.5,26,21z"></path>
+		<path d="M13.5,5h-5C8.2,5,8,4.8,8,4.5S8.2,4,8.5,4h5C13.8,4,14,4.2,14,4.5S13.8,5,13.5,5z"></path>
+		<path d="M13.5,8h-5C8.2,8,8,7.8,8,7.5S8.2,7,8.5,7h5C13.8,7,14,7.2,14,7.5S13.8,8,13.5,8z"></path>
+		<path d="M13.5,11h-5C8.2,11,8,10.8,8,10.5S8.2,10,8.5,10h5c0.3,0,0.5,0.2,0.5,0.5S13.8,11,13.5,11z"></path>
+		<path d="M13.5,14h-5C8.2,14,8,13.8,8,13.5S8.2,13,8.5,13h5c0.3,0,0.5,0.2,0.5,0.5S13.8,14,13.5,14z"></path>
+		<path d="M13.5,17h-5C8.2,17,8,16.8,8,16.5S8.2,16,8.5,16h5c0.3,0,0.5,0.2,0.5,0.5S13.8,17,13.5,17z"></path>
+		<path d="M21.5,20h-13C8.2,20,8,19.8,8,19.5S8.2,19,8.5,19h13c0.3,0,0.5,0.2,0.5,0.5S21.8,20,21.5,20z"></path>
+		<path d="M21.5,23h-13C8.2,23,8,22.8,8,22.5S8.2,22,8.5,22h13c0.3,0,0.5,0.2,0.5,0.5S21.8,23,21.5,23z"></path>
+		<path d="M21.5,26h-13C8.2,26,8,25.8,8,25.5S8.2,25,8.5,25h13c0.3,0,0.5,0.2,0.5,0.5S21.8,26,21.5,26z"></path>
+	  </g>
+	  <g id="google_doc">
+		<path d="M25.4,7.6c0-0.1-0.1-0.1-0.1-0.1l-6.8-6.8C18,0.2,17.5,0,17,0H7.8c-2.2,0-4,1.8-4,4v22c0,2.2,1.8,4,4,4h14
+		c2.2,0,4-1.8,4-4V8.8C25.8,8.4,25.7,7.9,25.4,7.6z M17.8,2.8l0.6,0.6l4,4L23,8h-3.2c-1.1,0-2-0.9-2-2V2.8z M23.8,26c0,1.1-0.9,2-2,2
+		h-14c-1.1,0-2-0.9-2-2V4c0-1.1,0.9-2,2-2h8v4c0,2.2,1.8,4,4,4h4V26z"></path>
+		<path d="M18.7,24.7H11c-0.4,0-0.7-0.2-0.9-0.5l-1.7-3c-0.2-0.3-0.2-0.6,0-0.9l3.6-6.1c0.2-0.3,0.5-0.5,0.9-0.5h3.8
+		c0.4,0,0.7,0.2,0.9,0.5l3.6,6.1c0.2,0.3,0.2,0.6,0,0.9l-1.7,3C19.4,24.5,19,24.7,18.7,24.7z M16.8,14.7l-3.8,0l-3.6,6.1l1.7,2.9
+		l7.7,0l1.7-2.9L16.8,14.7z M20.3,20.7C20.3,20.7,20.3,20.7,20.3,20.7L20.3,20.7L20.3,20.7z"></path>
+		<path d="M16.4,21.7h-3.2c-0.3,0-0.5-0.1-0.6-0.3l-0.7-1.2c-0.1-0.2-0.1-0.5,0-0.7l1.5-2.4c0.1-0.2,0.4-0.3,0.6-0.3h1.6
+		c0.3,0,0.5,0.1,0.6,0.3l1.5,2.5c0.1,0.2,0.1,0.5,0,0.7L17,21.3C16.9,21.6,16.7,21.7,16.4,21.7z M13.4,20.7h2.9l0.5-0.9l-1.3-2.1
+		h-1.3l-1.3,2.1L13.4,20.7z M16.9,20C16.9,20,16.9,20,16.9,20C16.9,20,16.9,20,16.9,20z M12.8,20L12.8,20C12.8,20,12.8,20,12.8,20z
+		 M14.3,17.5L14.3,17.5C14.3,17.5,14.3,17.5,14.3,17.5z"></path>
+	  </g>
+	  <g id="one_drive">
+		<path d="M25.87,8a.833.833,0,0,0-.16-.21L18.21.29A.833.833,0,0,0,18,.13.983.983,0,0,0,17.5,0H8A4.012,4.012,0,0,0,4,4V26a4.012,
+		4.012,0,0,0,4,4H22a4.012,4.012,0,0,0,4-4V8.5A.982.982,0,0,0,25.87,8ZM18,2.92,23.08,8H20a2.006,2.006,0,0,1-2-2ZM24,26a2.006,2.006,
+		0,0,1-2,2H8a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,8,2h8V6a4.012,4.012,0,0,0,4,4h4Z"></path>
+		<path d="M11.495,20.349a2.565,2.565,0,0,0,.084.657H9.545A1.5,1.5,0,0,1,8,19.552,1.464,1.464,0,0,1,9.5,18.1a.342.342,0,0,0,.342-.308,
+		2.1,2.1,0,0,1,2.167-2.027,2.4,2.4,0,0,1,.495.055c.051.011.1.024.153.038a.558.558,0,0,0,.142.026.35.35,0,0,0,.329-.231,2.643,2.643,
+		0,0,1,2.579-1.636A2.735,2.735,0,0,1,18.4,16.008a2.963,2.963,0,0,0-1.775-.594,3,3,0,0,0-2.88,2.223A2.748,2.748,0,0,0,
+		11.495,20.349Zm10.184,1.034a1.029,1.029,0,0,1-.755.322h-6.71a1.35,1.35,0,0,1-1.342-1.356,1.3,1.3,0,0,1,.273-.811,1.208,1.208,0,0,
+		1,.5-.412A1.189,1.189,0,0,1,14.053,19a1.146,1.146,0,0,1,.161-.014h.468a.34.34,0,0,0,.342-.349v-.021a1.4,1.4,0,0,1-.007-.175,1.617,
+		1.617,0,0,1,1.608-1.629,1.665,1.665,0,0,1,1.524,1.069.335.335,0,0,0,.314.217.284.284,0,0,0,.133-.028,1.705,1.705,0,0,1,.72-.168,1.377,
+		1.377,0,0,1,.335.042A1.627,1.627,0,0,1,20.9,19.273a.341.341,0,0,0,.3.294,1.143,1.143,0,0,1,.8,1.048A1.06,1.06,0,0,1,21.678,21.383Z"></path>
+	  </g>
+	  <g id="link">
+		<path d="M28.4,1.6c-1-1-2.4-1.6-3.8-1.6c-1.4,0-2.7,0.5-3.8,1.6l-5.3,5.3c-1.8,1.8-2,4.7-0.6,6.8l-1.3,1.3
+		  c-0.9-0.6-1.9-0.9-3-0.9c-1.4,0-2.7,0.5-3.8,1.6l-5.3,5.3c-2.1,2.1-2.1,5.5,0,7.5c1,1,2.4,1.6,3.8,1.6c1.4,0,2.7-0.5,3.8-1.6
+		  l5.3-5.3c1.8-1.8,2-4.7,0.6-6.8l1.3-1.3c0.9,0.6,1.9,0.9,3,0.9c1.4,0,2.7-0.5,3.8-1.6l5.3-5.3C30.5,7,30.5,3.6,28.4,1.6z M14,19.3
+		  c0,0.9-0.3,1.7-1,2.4L7.7,27c-0.6,0.6-1.5,1-2.4,1c-0.9,0-1.7-0.4-2.4-1c-0.6-0.6-1-1.5-1-2.4c0-0.9,0.3-1.7,1-2.4L8.3,17
+		  c0.6-0.6,1.5-1,2.4-1c0.6,0,1.1,0.1,1.6,0.4L8.6,20c-0.4,0.4-0.4,1,0,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.3,0,0.5-0.1,0.7-0.3l3.6-3.6
+		  C13.9,18.3,14,18.8,14,19.3z M27,7.7L21.7,13c-0.6,0.6-1.5,1-2.4,1c-0.6,0-1.1-0.1-1.6-0.4l3.6-3.6c0.4-0.4,0.4-1,0-1.4
+		  c-0.4-0.4-1-0.4-1.4,0l-3.6,3.6c-0.2-0.5-0.4-1-0.4-1.5c0-0.9,0.3-1.7,1-2.4L22.3,3c0.6-0.6,1.5-1,2.4-1c0.9,0,1.7,0.3,2.4,1
+		  c0.6,0.6,1,1.5,1,2.4C28,6.2,27.7,7.1,27,7.7z"></path>
+	  </g>
+	  <g id="file">
+		<path d="M25.5,7.6c0-0.1-0.1-0.1-0.1-0.1l-6.8-6.8C18.2,0.2,17.7,0,17.2,0H8C5.8,0,4,1.8,4,4v22c0,2.2,1.8,4,4,4h14
+		  c2.2,0,4-1.8,4-4V8.8C26,8.4,25.8,7.9,25.5,7.6z M18,2.8l0.6,0.6l4,4L23.2,8H20c-1.1,0-2-0.9-2-2V2.8z M24,26c0,1.1-0.9,2-2,2H8
+		  c-1.1,0-2-0.9-2-2V4c0-1.1,0.9-2,2-2h8v4c0,2.2,1.8,4,4,4h4V26z"></path>
+		<path d="M13.5,5h-5C8.2,5,8,4.8,8,4.5S8.2,4,8.5,4h5C13.8,4,14,4.2,14,4.5S13.8,5,13.5,5z"></path>
+		<path d="M13.5,8h-5C8.2,8,8,7.8,8,7.5S8.2,7,8.5,7h5C13.8,7,14,7.2,14,7.5S13.8,8,13.5,8z"></path>
+		<path d="M21.5,20h-13C8.2,20,8,19.8,8,19.5S8.2,19,8.5,19h13c0.3,0,0.5,0.2,0.5,0.5S21.8,20,21.5,20z"></path>
+		<path d="M21.5,23h-13C8.2,23,8,22.8,8,22.5S8.2,22,8.5,22h13c0.3,0,0.5,0.2,0.5,0.5S21.8,23,21.5,23z"></path>
+		<path d="M21.5,26h-13C8.2,26,8,25.8,8,25.5S8.2,25,8.5,25h13c0.3,0,0.5,0.2,0.5,0.5S21.8,26,21.5,26z"></path>
+		<path d="M22,16.5c0,0.3-0.2,0.5-0.5,0.5h-13C8.2,17,8,16.8,8,16.5C8,16.2,8.2,16,8.5,16h13C21.8,16,22,16.2,22,16.5z"></path>
+		<path d="M22,13.5c0,0.3-0.2,0.5-0.5,0.5h-13C8.2,14,8,13.8,8,13.5C8,13.2,8.2,13,8.5,13h13C21.8,13,22,13.2,22,13.5z"></path>
+		<path d="M16,10.5c0,0.3-0.2,0.5-0.5,0.5h-7C8.2,11,8,10.8,8,10.5C8,10.2,8.2,10,8.5,10h7C15.8,10,16,10.2,16,10.5z"></path>
+	  </g>
+	</defs>
+  </svg>
+</iron-iconset-svg><iron-iconset-svg name="d2l-cs-60" size="60" rtl-mirroring="true" style="display: none;">
+  <svg>
+	<defs>
+	  <g id="content">
+		<path d="M51,41v10c0,5-4,9-9,9H16c-5,0-9-4-9-9V9c0-5,4-9,9-9h10c0.5,0,1,0.5,1,1s-0.5,1-1,1H16c-3.9,0-7,3.1-7,7v42
+		  c0,3.9,3.1,7,7,7h26c3.9,0,7-3.1,7-7V41c0-0.5,0.5-1,1-1S51,40.4,51,41z"></path>
+		<path d="M45,0H35c-3.3,0-6,2.7-6,6v30c0,0.7,0.4,1.4,1.1,1.8c0.3,0.2,0.6,0.2,0.9,0.2c0.4,0,0.8-0.1,1.1-0.3l0.3-0.2
+		  l2.2-1.5l5.4-3.6l5.4,3.6l2.2,1.5l0.3,0.2c0.3,0.2,0.7,0.3,1.1,0.3c0.3,0,0.7-0.1,0.9-0.2c0.7-0.3,1.1-1,1.1-1.8V6
+		  C51,2.7,48.3,0,45,0z M49,36l-1.4-1l-5.8-3.8L40,30l-1.8,1.2L32.4,35L31,36V6c0-2.2,1.8-4,4-4h10c2.2,0,4,1.8,4,4V36z"></path>
+		<g>
+		  <path d="M45,43.5c0,0.3-0.2,0.5-0.5,0.5h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31C44.8,43,45,43.2,45,43.5z"></path>
+		  <path d="M45,48.5c0,0.3-0.2,0.5-0.5,0.5h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31C44.8,48,45,48.2,45,48.5z"></path>
+		  <path d="M45,53.5c0,0.3-0.2,0.5-0.5,0.5h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31C44.8,53,45,53.2,45,53.5z"></path>
+		  <path d="M25,18.5c0,0.3-0.2,0.5-0.5,0.5h-11c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h11C24.8,18,25,18.2,25,18.5z"></path>
+		  <path d="M25,13.5c0,0.3-0.2,0.5-0.5,0.5h-11c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h11C24.8,13,25,13.2,25,13.5z"></path>
+		  <path d="M25,8.5C25,8.8,24.8,9,24.5,9h-11C13.2,9,13,8.8,13,8.5S13.2,8,13.5,8h11C24.8,8,25,8.2,25,8.5z"></path>
+		</g>
+		<path d="M25,33.5c0,0.3-0.2,0.5-0.5,0.5h-11c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h11C24.8,33,25,33.2,25,33.5z"></path>
+		<path d="M25,28.5c0,0.3-0.2,0.5-0.5,0.5h-11c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h11C24.8,28,25,28.2,25,28.5z"></path>
+		<path d="M25,23.5c0,0.3-0.2,0.5-0.5,0.5h-11c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h11C24.8,23,25,23.2,25,23.5z"></path>
+		<path d="M25,38.5c0,0.3-0.2,0.5-0.5,0.5h-11c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h11C24.8,38,25,38.2,25,38.5z"></path>
+	  </g>
+	  <g id="google_doc">
+		<path d="M20.111,42.961l3.35,6.5a1,1,0,0,0,.89.54h15.3a1,1,0,0,0,.89-.54l3.35-6.5a.988.988,0,0,0-.01-.93l-7.169-13.5a.984.984,0,0,0-.88-.53H28.17a.984.984,0,0,0-.88.53l-7.169,13.5A.988.988,0,0,0,20.111,42.961ZM39.039,48H26.051l2.23-4H41.1ZM29.39,42l2.55-4.59L34.56,42ZM35.23,30,41.6,42H36.87L30.01,30Zm-6.969.97,2.52,4.42-6.4,11.49-2.25-4.37Z"></path>
+		<path points="30.67 17 30.66 17 30.67 17.01 30.67 17"></path>
+		<path d="M52.83,15.77,39.1,1.17A3.99,3.99,0,0,0,36.27,0H19a9.026,9.026,0,0,0-9,9V51a9.026,9.026,0,0,0,9,9H45a9.026,9.026,0,0,0,9-9V18.6A4.025,4.025,0,0,0,52.83,15.77ZM38,2.93l2.1,2.23,8.98,9.55L51.24,17H45a7.008,7.008,0,0,1-7-7ZM52,51a7.008,7.008,0,0,1-7,7H19a7.008,7.008,0,0,1-7-7V9a7.008,7.008,0,0,1,7-7H36v8a9.026,9.026,0,0,0,9,9h7Z"></path>
+	  </g>
+	  <g id="one_drive">
+		<path d="M50.83,15.77,37.1,1.17A3.99,3.99,0,0,0,34.27,0H17A9.026,9.026,0,0,0,8,9V51a9.026,9.026,0,0,0,9,
+		9H43a9.026,9.026,0,0,0,9-9V18.6A4.025,4.025,0,0,0,50.83,15.77ZM36,2.93l2.1,2.23,8.98,9.55L49.24,17H43a7.008,7.008,0,0,
+		1-7-7ZM50,51a7.008,7.008,0,0,1-7,7H17a7.008,7.008,0,0,1-7-7V9a7.008,7.008,0,0,1,7-7H34v8a9.026,9.026,0,0,0,9,9h7Z"></path>
+		<path d="M40.17,39.33a4.268,4.268,0,0,0-3.18-2.69A5.862,5.862,0,0,0,31.03,31a6.025,6.025,0,0,0-4.94,
+		2.51c-.12-.01-.24-.01-.35-.01a5.067,5.067,0,0,0-4.89,3.55A4.063,4.063,0,0,0,22,44.99a1.476,1.476,0,0,0,.21.01h4.1a3.846,
+		3.846,0,0,0,2.58,1h9.6a3.456,3.456,0,0,0,2.48-1.04,3.574,3.574,0,0,0-.8-5.63ZM25,42.06a3.67,3.67,0,0,0,.12.94H22.21A2.147,
+		2.147,0,0,1,20,40.92a2.1,2.1,0,0,1,2.15-2.08.49.49,0,0,0,.49-.44,3,3,0,0,1,3.1-2.9,3.426,3.426,0,0,1,
+		.708.078c.074.016.146.035.219.054a.8.8,0,0,0,.2.038.5.5,0,0,0,.47-.33A3.781,3.781,0,0,1,31.03,33a3.913,3.913,0,0,1,3.85,
+		2.85A4.24,4.24,0,0,0,32.34,35a4.3,4.3,0,0,0-4.12,3.18A3.932,3.932,0,0,0,25,42.06Zm14.57,1.48a1.472,1.472,0,0,1-1.08.46h-9.6a1.931,
+		1.931,0,0,1-1.92-1.94,1.865,1.865,0,0,1,.39-1.16,1.728,1.728,0,0,1,.72-.59,1.7,1.7,0,0,1,.58-.18,1.64,1.64,0,0,1,
+		.23-.02h.67a.487.487,0,0,0,.49-.5v-.03a2.006,2.006,0,0,1-.01-.25A2.313,2.313,0,0,1,32.34,37a2.382,2.382,0,0,1,2.18,1.53.48.48,0,
+		0,0,.45.31.406.406,0,0,0,.19-.04,2.44,2.44,0,0,1,1.03-.24,1.97,1.97,0,0,1,.48.06,2.328,2.328,0,0,1,1.79,1.9.488.488,0,0,0,.43.42,
+		1.635,1.635,0,0,1,1.14,1.5A1.517,1.517,0,0,1,39.57,43.54Z"></path>
+	  </g>
+	  <g id="link">
+		<path class="st0" d="M56.7,4.7l-1.4-1.4C53.2,1.2,50.3,0,47.3,0c-3,0-5.8,1.2-7.9,3.3L29.3,13.4c-2.1,2.1-3.3,4.9-3.3,7.9
+		c0,2.3,0.7,4.5,2,6.4L27.8,28c-1.9-1.3-4.1-2-6.4-2c-3,0-5.8,1.2-7.9,3.3L3.3,39.4C1.2,41.5,0,44.3,0,47.3c0,3,1.2,5.8,3.3,7.9
+		l1.5,1.4c2.1,2.1,4.9,3.3,7.9,3.3c3,0,5.8-1.2,7.9-3.3l10.1-10.1c2.1-2.1,3.3-4.9,3.3-7.9c0-2.3-0.7-4.5-2-6.4l0.3-0.3
+		c1.9,1.3,4.1,2,6.4,2c3,0,5.8-1.2,7.9-3.3l10.1-10.1c2.1-2.1,3.3-4.9,3.3-7.9S58.8,6.8,56.7,4.7z M29.3,45.2L19.2,55.3
+		C17.4,57.1,15,58,12.7,58c-2.4,0-4.7-0.9-6.5-2.7l-1.5-1.5c-3.6-3.6-3.6-9.4,0-13l10.1-10.1c1.8-1.8,4.2-2.7,6.5-2.7
+		c1.7,0,3.5,0.5,5,1.5l-1.5,1.5c-1.1-0.6-2.3-0.9-3.5-0.9c-1.8,0-3.7,0.7-5.1,2.1L6.1,42.3c-2.8,2.8-2.8,7.3,0,10.1l1.5,1.5
+		c1.4,1.4,3.2,2.1,5.1,2.1c1.8,0,3.7-0.7,5.1-2.1l10.1-10.1c2.3-2.3,2.7-5.8,1.2-8.5l1.5-1.5C32.8,37.2,32.4,42.1,29.3,45.2z
+		 M16.3,43.7c0.6,0.6,1.3,0.9,2.1,0.9c0.8,0,1.5-0.3,2.1-0.9l7-7c0.3,0.6,0.4,1.3,0.4,2c0,1.4-0.5,2.7-1.5,3.7L16.3,52.4
+		c-1,1-2.3,1.5-3.6,1.5c-1.4,0-2.7-0.5-3.7-1.5L7.6,51c-2-2-2-5.3,0-7.3l10.1-10.1c1-1,2.3-1.5,3.7-1.5c0.7,0,1.4,0.1,2,0.4l-7,7
+		C15.1,40.6,15.1,42.5,16.3,43.7z M30.7,30.7l-1.4,1.4l-1.4,1.5L26.4,35l-7.3,7.3c-0.2,0.2-0.5,0.3-0.7,0.3c-0.3,0-0.5-0.1-0.7-0.3
+		c-0.4-0.4-0.4-1,0-1.4l7.3-7.3l1.4-1.4l1.5-1.4l1.4-1.4l0,0l1.4-1.4l1.4-1.5l1.4-1.4l7.3-7.3c0.2-0.2,0.5-0.3,0.7-0.3
+		c0.3,0,0.5,0.1,0.7,0.3c0.4,0.4,0.4,1,0,1.4L35,26.4l-1.4,1.4L30.7,30.7z M43.7,16.3c-0.6-0.6-1.3-0.9-2.1-0.9s-1.5,0.3-2.1,0.9
+		l-7,7c-0.8-1.9-0.4-4.1,1.1-5.6L43.7,7.6c1-1,2.3-1.5,3.7-1.5C48.7,6,50,6.6,51,7.6L52.4,9c1,1,1.5,2.3,1.5,3.7
+		c0,1.4-0.5,2.7-1.5,3.7L42.3,26.4c-1,1-2.3,1.5-3.7,1.5c-0.7,0-1.4-0.1-2-0.4l7-7C44.9,19.4,44.9,17.5,43.7,16.3z M55.3,19.2
+		L45.2,29.3C43.4,31.1,41,32,38.7,32c-1.7,0-3.5-0.5-5-1.5l1.5-1.5c1.1,0.6,2.3,0.9,3.5,0.9c1.8,0,3.7-0.7,5.1-2.1l10.1-10.1
+		c2.8-2.8,2.8-7.3,0-10.1l-1.5-1.5C51,4.7,49.2,4,47.3,4c-1.8,0-3.7,0.7-5.1,2.1L32.1,16.3c-2.3,2.3-2.7,5.8-1.2,8.5l-1.5,1.5
+		c-2.3-3.6-1.9-8.4,1.2-11.5L40.8,4.7C42.6,2.9,45,2,47.3,2c2.4,0,4.7,0.9,6.5,2.7l1.5,1.4C58.9,9.7,58.9,15.6,55.3,19.2z"></path>
+	  </g>
+	  <g id="file">
+		<path d="M32.3,16.8L32.3,16.8L32.3,16.8L32.3,16.8z"></path>
+		  <path d="M50.8,15.8L37.1,1.2C36.4,0.4,35.4,0,34.3,0H17c-5,0-9,4-9,9v42c0,5,4,9,9,9h26c5,0,9-4,9-9V18.6
+		  C52,17.5,51.5,16.5,50.8,15.8z M36,2.9l2.1,2.2l9,9.6l2.2,2.3H43c-3.9,0-7-3.1-7-7V2.9z M50,51c0,3.9-3.1,7-7,7H17
+		  c-3.9,0-7-3.1-7-7V9c0-3.9,3.1-7,7-7h17v8c0,5,4,9,9,9h7V51z"></path>
+		<path d="M45.5,24h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31c0.3,0,0.5,0.2,0.5,0.5S45.8,24,45.5,24z"></path>
+		<path d="M45.5,29h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31c0.3,0,0.5,0.2,0.5,0.5S45.8,29,45.5,29z"></path>
+		<path d="M45.5,34h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31c0.3,0,0.5,0.2,0.5,0.5S45.8,34,45.5,34z"></path>
+		<path d="M45.5,39h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31c0.3,0,0.5,0.2,0.5,0.5S45.8,39,45.5,39z"></path>
+		<path d="M45.5,44h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31c0.3,0,0.5,0.2,0.5,0.5S45.8,44,45.5,44z"></path>
+		<path d="M45.5,49h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31c0.3,0,0.5,0.2,0.5,0.5S45.8,49,45.5,49z"></path>
+		<path d="M45.5,54h-31c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h31c0.3,0,0.5,0.2,0.5,0.5S45.8,54,45.5,54z"></path>
+		<path d="M30,18.5c0,0.3-0.2,0.5-0.5,0.5h-15c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h15C29.8,18,30,18.2,30,18.5z"></path>
+		<path d="M30,13.5c0,0.3-0.2,0.5-0.5,0.5h-15c-0.3,0-0.5-0.2-0.5-0.5s0.2-0.5,0.5-0.5h15C29.8,13,30,13.2,30,13.5z"></path>
+		<path d="M30,8.5C30,8.8,29.8,9,29.5,9h-15C14.2,9,14,8.8,14,8.5S14.2,8,14.5,8h15C29.8,8,30,8.2,30,8.5z"></path>
+	  </g>
+	</defs>
+  </svg>
+</iron-iconset-svg><style id="d2l-typography-font-face">
+		@font-face {
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 400;
+			src: local('Lato Regular'), local('Lato-Regular'), url(https://s.brightspace.com/lib/fonts/0.5.0/assets/Lato-400.woff2) format('woff2'), url(https://s.brightspace.com/lib/fonts/0.5.0/assets/Lato-400.woff) format('woff'), url(https://s.brightspace.com/lib/fonts/0.5.0/assets/Lato-400.ttf) format('truetype');
+		}
+		@font-face {
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 700;
+			src: local('Lato Bold'), local('Lato-Bold'), url(https://s.brightspace.com/lib/fonts/0.5.0/assets/Lato-700.woff2) format('woff2'), url(https://s.brightspace.com/lib/fonts/0.5.0/assets/Lato-700.woff) format('woff'), url(https://s.brightspace.com/lib/fonts/0.5.0/assets/Lato-700.ttf) format('truetype');
+		}
+
+		.d2l-typography {
+			color: var(--d2l-color-ferrite);
+			display: block;
+			font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+			letter-spacing: 0.01rem;
+			font-size: 0.95rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+		}
+
+		.d2l-typography .d2l-body-standard {
+			font-size: 0.95rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+		}
+
+		.d2l-typography .d2l-body-compact {
+			font-size: 0.8rem;
+			font-weight: 400;
+			line-height: 1.2rem;
+		}
+
+		.d2l-typography .d2l-body-small {
+			color: var(--d2l-color-tungsten);
+			font-size: 0.7rem;
+			font-weight: 400;
+			line-height: 1rem;
+			margin: auto;
+		}
+
+		.d2l-typography .d2l-label-text {
+			font-size: 0.7rem;
+			line-height: 1rem;
+			font-weight: 700;
+			letter-spacing: 0.2px;
+		}
+
+		.d2l-typography p {
+			margin: 1rem 0;
+		}
+
+		.d2l-typography:lang(ar),
+		.d2l-typography :lang(ar) {
+			font-family: 'Segoe UI', 'Geeza Pro', sans-serif;
+		}
+
+		.d2l-typography:lang(zh),
+		.d2l-typography :lang(zh) {
+			font-family: 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+		}
+
+		.d2l-typography:lang(ko),
+		.d2l-typography :lang(ko) {
+			font-family: 'Apple SD Gothic Neo', Dotum, sans-serif;
+		}
+
+		.d2l-typography:lang(ja),
+		.d2l-typography :lang(ja) {
+			font-family: 'Hiragino Kaku Gothic Pro', 'Meiyro', sans-serif;
+		}
+
+		.d2l-typography .d2l-heading-1 {
+			font-size: 2rem;
+			font-weight: 400;
+			line-height: 2.4rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+
+		.d2l-typography .d2l-heading-2 {
+			font-size: 1.5rem;
+			font-weight: 400;
+			line-height: 1.8rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+
+		.d2l-typography .d2l-heading-3 {
+			font-size: 1rem;
+			font-weight: 700;
+			line-height: 1.5rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+
+		.d2l-typography .d2l-heading-4 {
+			font-size: 0.8rem;
+			font-weight: 700;
+			line-height: 1.2rem;
+			margin: 1.5rem 0 1.5rem 0;
+		}
+
+		.d2l-typography .d2l-blockquote {
+			font-size: 0.8rem;
+			font-weight: 400;
+			line-height: 1.4rem;
+			margin: 0;
+			margin-right: 1.2rem;
+			padding: 0;
+			padding-left: 1.2rem;
+			padding-top: 0.5rem;
+			position: relative;
+		}
+
+		.d2l-typography .d2l-blockquote::before {
+			position: absolute;
+			content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCAyMiAyMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGRlZnM+PHBhdGggaWQ9ImEiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEgLTEpIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPjxwYXRoIGQ9Ik02IDIyLjY2N0E0LjY2NyA0LjY2NyAwIDAgMCAxMC42NjcgMThjMC0xLjIyNy0uNTU5LTIuNS0xLjMzNC0zLjMzM0M4LjQ4MSAxMy43NSA3LjM1IDEzLjMzMyA2IDEzLjMzM2MtLjQxMSAwIDEuMzMzLTYuNjY2IDMtOSAxLjY2Ny0yLjMzMyAxLjMzMy0zIC4zMzMtM0M4IDEuMzMzIDUuMjUzIDQuNTg2IDQgNy4yNTUgMS43NzMgMTIgMS4zMzMgMTUuMzkyIDEuMzMzIDE4QTQuNjY3IDQuNjY3IDAgMCAwIDYgMjIuNjY3em0xMiAwQTQuNjY3IDQuNjY3IDAgMCAwIDIyLjY2NyAxOGMwLTEuMjI3LS41NTktMi41LTEuMzM0LTMuMzMzLS44NTItLjkxNy0xLjk4My0xLjMzNC0zLjMzMy0xLjMzNC0uNDExIDAgMS4zMzMtNi42NjYgMy05IDEuNjY3LTIuMzMzIDEuMzMzLTMgLjMzMy0zLTEuMzMzIDAtNC4wOCAzLjI1My01LjMzMyA1LjkyMkMxMy43NzMgMTIgMTMuMzMzIDE1LjM5MiAxMy4zMzMgMThBNC42NjcgNC42NjcgMCAwIDAgMTggMjIuNjY3eiIgZmlsbD0iI0QzRDlFMyIgbWFzaz0idXJsKCNiKSIvPjwvZz48L3N2Zz4=");
+			top: 0;
+			left: 0;
+		}
+
+		[dir="rtl"] .d2l-typography .d2l-blockquote,
+		.d2l-typography .d2l-blockquote[dir="rtl"] {
+			margin-left: 1.2rem;
+			margin-right: 0;
+			padding-left: 0;
+			padding-right: 1.2rem;
+		}
+
+		[dir="rtl"] .d2l-typography .d2l-blockquote::before,
+		.d2l-typography .d2l-blockquote[dir="rtl"]::before {
+			left: initial;
+			right: 0;
+			transform: scaleX(-1);
+		}
+
+		@media (max-width: 615px) {
+
+			.d2l-typography .d2l-body-standard {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+
+			.d2l-typography .d2l-body-small {
+				font-size: 0.6rem;
+				line-height: 0.9rem;
+			}
+
+			.d2l-typography .d2l-heading-1 {
+				font-size: 1.5rem;
+				line-height: 1.8rem;
+			}
+
+			.d2l-typography .d2l-heading-2 {
+				font-size: 1rem;
+				font-weight: 700;
+				line-height: 1.5rem;
+			}
+
+			.d2l-typography .d2l-heading-3 {
+				font-size: 0.8rem;
+				line-height: 1.2rem;
+			}
+
+			.d2l-typography .d2l-blockquote {
+				line-height: 1.2rem;
+			}
+
+		}
+	</style><script async="" src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/langs.js"></script><script async="" src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/tinymce.min.js"></script><link rel="stylesheet" type="text/css" id="mce-u0" href="./Assignment Evaluation - Parteek Grewal - Lab 2_files/skin.shadowdom.min.css"></head>
+	<body class="d2l-body d2l-typography vui-typography daylight" style="overflow: auto;">
+		<d2l-consistent-evaluation id="d2l_1_0_819" header-text="Activity Evaluation" class="d2l-token-receiver" data-token-receiver-scope="*:*:*" href="https://18f3d507-3b60-49c8-a787-850123d2c75a.activities.api.brightspace.com/collection/8492317?currentActorUsageId=VG1wWmQwNVdPSGxOUkVGM1dIcFJNRTVxUlROT2R5NDVNVFF5TlRJLnVzZXJfMTY0OTEyMg" data-telemetry-endpoint="https://prd.ca-central-1.telemetryservice.brightspace.com/api/events/" return-href="/d2l/lms/dropbox/admin/mark/folder_submissions_users.d2l?ou=914252&amp;db=446177" return-href-text="Back to Folder Submissions" use-new-html-editor="" outcome-term="standards"></d2l-consistent-evaluation><script src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/jquery.min.js"></script>
+		<script src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/jquery-ui.min.js"></script>
+		<script src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/bsi.js"></script>
+		<script>
+		window.__elasticRumOnload = function() {var apm = elasticApm.init({serviceName: 'LMS',serverUrl: 'https://d2l-elasticrum.apm.us-east-1.aws.cloud.es.io/',transactionSampleRate: 0.2,disableInstrumentations: ['xmlhttprequest','fetch','eventtarget','history']});apm.addLabels({ "orgName": "bcit"});apm.addLabels({ "instanceName": "bcit"});};
+		</script>
+		<script async="async" onload="window.__elasticRumOnload()" src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/elastic-apm-rum.umd.min.js"></script>
+		<script>
+		window.__ttiOnload = function() {ttiPolyfill.getFirstConsistentlyInteractive().then(function(tti) {if (tti) {document.dispatchEvent(new CustomEvent('d2l-performance-measure', {bubbles: true,detail: { name: 'd2l.page.tti', value: {name: 'd2l.page.tti', entryType: 'tti-polyfill', duration: tti, startTime: 0} }}));}});};
+		</script>
+		<script async="async" onload="window.__ttiOnload()" src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/tti-polyfill-global.js"></script>
+		<script src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/D2L.LP.Web.Desktop.js"></script>
+		<script src="./Assignment Evaluation - Parteek Grewal - Lab 2_files/moment.min.js"></script>
+		<script>
+		D2L.LP.Web.UI.Events.OnInit.AddListener( function() {
+D2L.O("__g1",0)();
+D2L.O("__g1",1)();
+D2L.O("__g1",2)();
+D2L.O("__g1",3)();
+D2L.O("__g1",4)();
+D2L.O("__g1",5)();
+D2L.O("__g1",6)();
+} );
+
+		D2L.OR={
+"D2L.ActivityEditor.FileUploadDialogOpener":{"0":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.FileSelectorDialog.OpenDialog\",\"P\":[{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Legacy.MasterPages.Dialog.Open\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"url\",\"Url\":\"\/d2l\/common\/dialogs\/file\/main.d2l?ou=914252&af=mycomputer%2coufiles%2csharedfiles%2cmylocker%2cgrouplocker%2cvideonotesearch&am=1&fsc=0&asc=0&mfs=0&afid=0&uih=&area&f=&path\"},\"DialogCallback\",null,\"files\",700,520,\"Close this Dialog\",[{\"_type\":\"D2L.LP.Web.UI.Legacy.MasterPages.DialogLegacy+ButtonData\",\"IsPrimary\":true,\"Key\":\"BTN_next\",\"Param\":\"next\",\"Text\":\"Add\",\"ResponseType\":1,\"IsEnabled\":true},{\"_type\":\"D2L.LP.Web.UI.Legacy.MasterPages.DialogLegacy+ButtonData\",\"IsPrimary\":false,\"Key\":\"BTN_back\",\"Param\":\"back\",\"Text\":\"Back\",\"ResponseType\":1,\"IsEnabled\":true},{\"_type\":\"D2L.LP.Web.UI.Legacy.MasterPages.DialogLegacy+ButtonData\",\"IsPrimary\":false,\"Key\":\"\",\"Param\":\"\",\"Text\":\"Cancel\",\"ResponseType\":0,\"IsEnabled\":true}],false,\"\"],\"D\":true},{\"_type\":\"id\",\"Value\":\"d2l_1_1_354\"},{\"_type\":\"func\",\"N\":\"D2L.ActivityEditor.FileUploadDialogCallback\",\"P\":[{\"_type\":\"call\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.FileSelectorDialog.GetFiles\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_1_354\"}]}]}]}"}
+,
+"D2L.ActivityEditor.AddQuicklinkDialogOpener":{"0":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.Open\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"call\",\"N\":\"D2L.LP.Web.Mvc.RouteLocation.Create\",\"P\":[\"\/d2l\/lp\/quicklinks\/manage\/{orgUnitId}\/{action}\",{\"_type\":\"D2L.LP.Util.Dictionary\",\"typeKey\":\"\",\"initialViewType\":\"Default\",\"outputFormat\":\"html\",\"selectedText\":\"\",\"parentModuleId\":0,\"canChangeType\":false,\"showCancelButton\":true,\"urlShowTarget\":false,\"urlShowCancelButtonInline\":false,\"contextId\":\"\",\"allowedTypes\":\"gblmap,selfassess,groupTypeSelfEnrollment,discuss,checklist,remote_plugin_a6bdc577-1780-4830-b7ae-dabc7f895332,rubric,remote_plugin_c683a9b6-3478-429f-b0f7-3ed3c3f8b83d,survey,schedule,dropbox,one-drive-lti,google-drive,remote_plugin_bc20506b-0e79-4871-a7c6-d17827554c7f,lti,mediaLibrary,one-drive,GoogleMeetQuickLink,content,epobject,D2L.LE.LearningPaths.CourseLink,remote_plugin_2d07e608-90e4-4ea6-be45-d9b419ae8b8c,remote_plugin_980e277d-60c6-4758-8023-2a3da033a763,coursefile,form,chat,news,quiz\",\"mode\":\"PickOnly\"},{\"_type\":\"D2L.LP.Util.Dictionary\",\"action\":\"CreateDialog\",\"orgUnitId\":914252}]}],\"D\":true}"}
+,
+"D2L.ActivityEditor.AddLinkDialogOpener":{"0":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.Open\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"call\",\"N\":\"D2L.LP.Web.Mvc.RouteLocation.Create\",\"P\":[\"\/d2l\/lp\/quicklinks\/manage\/{orgUnitId}\/{action}\",{\"_type\":\"D2L.LP.Util.Dictionary\",\"typeKey\":\"url\",\"initialViewType\":\"Items\",\"outputFormat\":\"html\",\"selectedText\":\"\",\"parentModuleId\":0,\"canChangeType\":false,\"showCancelButton\":false,\"urlShowTarget\":false,\"urlShowCancelButtonInline\":true,\"contextId\":\"\",\"customTitle\":\"\"},{\"_type\":\"D2L.LP.Util.Dictionary\",\"action\":\"CreateDialog\",\"orgUnitId\":914252}]}],\"D\":true}"}
+,
+"D2L.ActivityEditor.AddGoogleDriveLinkDialogOpener":{"0":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.Open\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"call\",\"N\":\"D2L.LP.Web.Mvc.RouteLocation.Create\",\"P\":[\"\/d2l\/lp\/quicklinks\/manage\/{orgUnitId}\/{action}\",{\"_type\":\"D2L.LP.Util.Dictionary\",\"typeKey\":\"google-drive\",\"initialViewType\":\"Items\",\"outputFormat\":\"html\",\"selectedText\":\"\",\"parentModuleId\":0,\"canChangeType\":false,\"showCancelButton\":false,\"urlShowTarget\":false,\"urlShowCancelButtonInline\":false,\"contextId\":\"\",\"customTitle\":\"Add Materials\"},{\"_type\":\"D2L.LP.Util.Dictionary\",\"action\":\"CreateDialog\",\"orgUnitId\":914252}]}],\"D\":true}"}
+,
+"D2L.ActivityEditor.AddOneDriveLinkDialogOpener":{"0":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.Open\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"call\",\"N\":\"D2L.LP.Web.Mvc.RouteLocation.Create\",\"P\":[\"\/d2l\/lp\/quicklinks\/manage\/{orgUnitId}\/{action}\",{\"_type\":\"D2L.LP.Util.Dictionary\",\"typeKey\":\"one-drive\",\"initialViewType\":\"Items\",\"outputFormat\":\"html\",\"selectedText\":\"\",\"parentModuleId\":0,\"canChangeType\":false,\"showCancelButton\":false,\"urlShowTarget\":false,\"urlShowCancelButtonInline\":false,\"contextId\":\"\",\"customTitle\":\"Add Materials\"},{\"_type\":\"D2L.LP.Util.Dictionary\",\"action\":\"CreateDialog\",\"orgUnitId\":914252}]}],\"D\":true}"}
+,
+"D2L.ActivityEditor.RecordVideoDialogOpener":{"0":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.FileInput.RecordVideoFile.AddFile\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Legacy.MasterPages.Dialog.Open\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"url\",\"Url\":\"\/d2l\/wcs\/mp\/dialogs\/VideoCaptureDialog.d2l?ou=914252\"},\"VideoCaptureDialogCallback\",null,\"file\",530,560,\"Close this Dialog\",[{\"_type\":\"D2L.LP.Web.UI.Legacy.MasterPages.DialogLegacy+ButtonData\",\"IsPrimary\":true,\"Key\":\"\",\"Param\":\"\",\"Text\":\"Add\",\"ResponseType\":1,\"IsEnabled\":false},{\"_type\":\"D2L.LP.Web.UI.Legacy.MasterPages.DialogLegacy+ButtonData\",\"IsPrimary\":false,\"Key\":\"\",\"Param\":\"\",\"Text\":\"Cancel\",\"ResponseType\":0,\"IsEnabled\":true}],false,\"\"],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.ActivityEditor.RecordVideoDialogCallback\"}]}"}
+,
+"D2L.ActivityEditor.RecordAudioDialogOpener":{"0":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.FileInput.RecordVideoFile.AddFile\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Legacy.MasterPages.Dialog.Open\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_819\"},{\"_type\":\"url\",\"Url\":\"\/d2l\/wcs\/mp\/dialogs\/VideoCaptureDialog.d2l?ou=914252&audioCapture=true\"},\"VideoCaptureDialogCallback\",null,\"file\",530,560,\"Close this Dialog\",[{\"_type\":\"D2L.LP.Web.UI.Legacy.MasterPages.DialogLegacy+ButtonData\",\"IsPrimary\":true,\"Key\":\"\",\"Param\":\"\",\"Text\":\"Add\",\"ResponseType\":1,\"IsEnabled\":false},{\"_type\":\"D2L.LP.Web.UI.Legacy.MasterPages.DialogLegacy+ButtonData\",\"IsPrimary\":false,\"Key\":\"\",\"Param\":\"\",\"Text\":\"Cancel\",\"ResponseType\":0,\"IsEnabled\":true}],false,\"\"],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.ActivityEditor.RecordAudioDialogCallback\"}]}"}
+,
+"__g1":{"0":"{\"_type\":\"func\",\"N\":\"D2L.PT.Auth.SessionTimeout.Init\",\"P\":[\"996655\",180,5,{\"_type\":\"id\",\"Value\":\"d2l_sessionExpiryWarning\"},\"d2l_sessionExpiryAlert\",\"d2l_sessionExpiryCheck\",{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Rpc.ConnectObject\",\"P\":[\"POST\",{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/auth\/session\/extend\"}],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.OpenHelper\",\"P\":[{\"_type\":\"call\",\"N\":\"D2L.LP.Web.UI.Html.Dom.GetActiveElement\"},{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/auth\/session\/Expired?isLogout=0&isUsernamePasswordLogin=0&userId=996655\"}],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.OpenHelper\",\"P\":[{\"_type\":\"call\",\"N\":\"D2L.LP.Web.UI.Html.Dom.GetActiveElement\"},{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/auth\/session\/Expired?isLogout=1&isUsernamePasswordLogin=0&userId=996655\"}],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.InlineDialog\",\"P\":[null,{\"_type\":\"id\",\"Value\":\"d2l_1_2_75\"},\"Warning\",\"New User Session\",\"The current user session has changed, so the links and content on this page may not behave as expected.\",\"OK\",\"\",\"Close this Dialog\",\"d2l-dialog-inline-body-warning\",true,false,false],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.Inline.Abort\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_2_75\"}]}]}",
+"1":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.Authentication.Xsrf.Init\",\"P\":[\"d2l_referrer\",\"nJX4JfITKuvlS4sfxQxr7IcBm7hVnNkL\",-1751832112]}",
+"2":"{\"_type\":\"func\",\"N\":\"D2L.LP.ActivityBar.Init\",\"P\":[{\"_type\":\"url\",\"Url\":\"\/d2l\/activityFeed\/checkForNewAlerts\"},120]}",
+"3":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.MessageArea.Init\",\"P\":[\"d2l_messagearea\",{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/validation\/errors\"}]}",
+"4":"{\"_type\":\"func\",\"N\":\"D2L.LP.Globalization.Locale.Init\",\"P\":[{\"_type\":\"anon\",\"DecimalSeparator\":\".\",\"GroupSeparator\":\",\",\"NumberNegativePattern\":1,\"PercentPositivePattern\":0,\"PercentNegativePattern\":0,\"PercentSymbol\":\"%\",\"NegativeSign\":\"-\",\"NativeDigits\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"UseNativeDigits\":false,\"GroupSizes\":[3],\"IntegerRegex\":\"^([\\\\(-]*(([01234567890123456789]?[01234567890123456789]?([01234567890123456789](,[01234567890123456789][01234567890123456789][01234567890123456789])*)?))[\\\\)-]*)$|^([\\\\(-]*[01234567890123456789]+[\\\\)-]*)$\",\"DecimalRegex\":\"^([\\\\(-]*(([01234567890123456789]?[01234567890123456789]?([01234567890123456789](,[01234567890123456789][01234567890123456789][01234567890123456789])*)))(\\\\.[01234567890123456789]+)?[\\\\)-]*)$|^([\\\\(-]*[01234567890123456789]*\\\\.?[01234567890123456789]+[\\\\)-]*)$\"},{\"_type\":\"anon\",\"InputDateFormat\":\"M\/d\/yyyy\",\"Is24HourClock\":false,\"NativeDigits\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"UseNativeDigits\":false,\"TimeFormat\":\"h:mm tt\",\"AmDesignator\":\"AM\",\"PmDesignator\":\"PM\",\"FirstDayOfWeek\":0,\"ShortMonthNames\":[\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\",\"\"],\"LongMonthNames\":[\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\",\"\"],\"ShortDayOfWeekNames\":[\"Sun\",\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\"]},{\"_type\":\"anon\",\"TextDirection\":1},{\"_type\":\"anon\",\"Culture\":\"en-ca\"},{\"_type\":\"anon\",\"JustNow\":\"just now\",\"OneMinuteAgo\":\"1 minute ago\",\"TwoMinutesAgo\":\"2 minutes ago\",\"MinutesAgoMany\":\"[0] minutes ago\",\"OneHourAgo\":\"1 hour ago\",\"TwoHoursAgo\":\"2 hours ago\",\"ManyHoursAgo\":\"[0] hours ago\",\"YesterdayTime\":\"yesterday at [0]\",\"DayOfWeekTime\":\"[0] at [1]\",\"MonthDayTime\":\"[0] at [1]\",\"Now\":{\"_type\":\"D2L.LocalDateTime\",\"Year\":2023,\"Month\":2,\"Day\":3,\"Hour\":12,\"Minute\":40,\"Second\":48,\"Millisecond\":689}}]}",
+"5":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Rpc.Initialize\",\"P\":[{\"_type\":\"url\",\"Url\":\"\/d2l\/login?target=%2fd2l%2fle%2factivities%2fiterator%2f8492317%3fcft%3dassignment-submissions%26ou%3d914252%26currentActorActivityUsage%3dVG1wWmQwNVdPSGxOUkVGM1dIcFJNRTVxUlROT2R5NDVNVFF5TlRJLnVzZXJfMTY0OTEyMg&sessionExpired=1\"},\"Error: unable to complete your request.\",{\"_type\":\"D2L.LP.Util.Dictionary\"},{\"_type\":\"D2L.LP.Util.Dictionary\",\"flash\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.FlashMessages.RpcReceivePayloadProvider\"},\"session\":{\"_type\":\"func\",\"N\":\"D2L.PT.Auth.SessionTimeout.RpcReceivePayloadProvider\"},\"messageArea\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.MessageArea.RpcReceivePayloadProvider\"},\"OR\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.ObjectRepository.RpcReceivePayloadProvider\"},\"JS\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.JavaScript.RpcReceiveJsPayloadProvider\"},\"CSS\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.JavaScript.RpcReceiveCssPayloadProvider\"},\"BSI\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.Bsi.RpcReceiveJsPayloadProvider\"},\"ariaMessages\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.Aria.RpcReceivePayloadProvider\"}}]}",
+"6":"{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.InlineHelp.Init\",\"P\":[{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/inlineHelp\/914252\/help\"}]}"}
+
+};
+
+		</script>
+		<script>D2L.LP.Web.UI.Html.Bsi.Init('prod', 'https://s.brightspace.com/lib/webcomponentsjs/2.4.4/', 'https://s.brightspace.com/lib/regenerator-runtime/0.13.5/runtime.js', 'https://s.brightspace.com/lib/bsi/20.23.1-247/', ['unbundled/consistent-evaluation.js']);</script>
+	
+<div aria-live="polite" style="display: inline-block; position: fixed; height: 0px; clip: rect(0px, 0px, 0px, 0px);">Additional actions (press Tab to focus)</div></body></html>
