@@ -5,7 +5,7 @@ client = OpenAI(
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
 )
 
-messages = [{"role": "user", "content": "who are you"}]
+messages = [{"role": "system", "content": "You are a AI master, No nonsense"}, {"role": "user", "content": "who are you"}]
 completion = client.chat.completions.create(
     model="qwen3.5-plus",  # model type
     messages=messages,
